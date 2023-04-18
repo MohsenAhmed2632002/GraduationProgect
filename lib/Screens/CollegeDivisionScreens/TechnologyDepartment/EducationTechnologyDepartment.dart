@@ -1,17 +1,59 @@
-// ignore_for_file: must_be_immutable
-
+import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_pro/Const/const.dart';
-import 'package:graduation_pro/Screens/CollegeDivisionScreens/TechnologyDepartment/ComputerTeacherSection.dart';
-import 'package:graduation_pro/Screens/CollegeDivisionScreens/TechnologyDepartment/DivisionSpecialist.dart';
+import 'package:video_player/video_player.dart';
 
-class TechnologyDepartment extends StatelessWidget {
+class TechnologyDepartment extends StatefulWidget {
   TechnologyDepartment({super.key});
 
-  List DepartmentsOfEducationalTechnology = [
-    ComputerTeacherSection(),
-    DivisionSpecialist(),
-  ];
+  @override
+  State<TechnologyDepartment> createState() => _TechnologyDepartmentState();
+}
+
+class _TechnologyDepartmentState extends State<TechnologyDepartment> {
+  late ChewieController _Chewiecontroller;
+  @override
+  void initState() {
+    super.initState();
+    _initPlayer();
+  }
+
+  void _initPlayer() async {
+    // await _VideoPlayerController.initialize();
+    _Chewiecontroller = ChewieController(
+      errorBuilder: (context, errorMessage) {
+        return Container(
+          child: Text("$errorMessage"),
+        );
+      },
+      aspectRatio: 16 / 9,
+      autoInitialize: true,
+      videoPlayerController: VideoPlayerController.asset("assets/Videos/T.mp4"),
+      autoPlay: true,
+      //       additionalOptions: (context) {
+      //         return <OptionItem>[
+      //           OptionItem(
+      //             onTap: () {},
+      //             iconData: Icons.share,
+      //             title: '',
+      //           ),
+      //           OptionItem(
+      //             onTap: () {},
+      //             iconData: Icons.share,
+      //             title: 'title',
+      //           ),
+      //         ];
+      //       }
+    );
+    WidgetsFlutterBinding.ensureInitialized();
+  }
+
+  @override
+  void dispose() {
+    // _VideoPlayerController.dispose();
+    _Chewiecontroller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +72,10 @@ class TechnologyDepartment extends StatelessWidget {
           padding: EdgeInsets.all(12),
           child: Column(
             children: [
+              Chewie(controller: _Chewiecontroller),
               Text(
                 textAlign: TextAlign.right,
-                textDirection: TextDirection.rtl,
+                // textDirection: TextDirection.rtl,
                 "رؤية ورسالة قسم تكنولوجيا التعليم ",
                 style: TextStyle(fontSize: 40),
               ),

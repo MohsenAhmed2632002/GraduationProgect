@@ -31,7 +31,7 @@ class _CollegeDivisionState extends State<CollegeDivision> {
     "assets/images/ArtEducation.jpg",
     "assets/images/MusicEducation.png",
     "assets/images/HomeEconomics.jpeg",
-    "assets/images/Specialeducation.png",
+    "assets/images/Specialeducation.jpg",
   ];
 
   @override
@@ -56,10 +56,9 @@ class _CollegeDivisionState extends State<CollegeDivision> {
               );
             },
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.33,
+              height: MediaQuery.of(context).size.height * .3,
               width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.all(12),
-              
               child: Image.asset(
                 nameallOfDepartment[index],
                 fit: BoxFit.fill,

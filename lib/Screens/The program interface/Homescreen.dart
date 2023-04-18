@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:graduation_pro/Const/const.dart';
 import 'package:graduation_pro/Screens/Affairs/Affairs.dart';
 import 'package:graduation_pro/Screens/CollegeDivisionScreens/CollegeDivision.dart';
 import 'package:graduation_pro/Screens/CollegeMessage/CollegeMessage.dart';
@@ -24,6 +23,14 @@ class Homescreen extends StatelessWidget {
     Fourthtopic(),
     Fifthtopic(),
   ];
+  List<String> nameAllOfSections = [
+    "assets/images/CollegeDivision.png",
+    "assets/images/Affairs.jpg",
+    "assets/images/CollegeMessage.png",
+    // "assets/images/MusicEducation.png",
+    // "assets/images/HomeEconomics.jpeg",
+    // "assets/images/Specialeducation.jpg",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -42,20 +49,17 @@ class Homescreen extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.33,
               width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.all(12),
-              color: MyColors.blue,
               child: Center(
-                child: Text(
-                  nameOfSections[index],
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 26,
-                  ),
+                child: Image.asset(
+                  nameAllOfSections[index],
+                  fit: BoxFit.fill,
+                  filterQuality: FilterQuality.high,
                 ),
               ),
             ),
           );
         }),
-        itemCount: nameOfDepartment.length,
+        itemCount: nameAllOfSections.length,
       ),
     );
   }
